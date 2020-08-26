@@ -1,0 +1,20 @@
+import speech_recognition as sr
+
+# load an audio file
+audio_path = '[...]/search-restaurants-nearby.wav'
+
+# create a recognizer class
+r = sr.Recognizer()
+
+# Capture data from the audio file
+audio_file = sr.AudioFile(audio_path)
+with audio_file as source:
+    audio = r.record(source)
+
+# save the output of the recognizer to a variable
+search_query = r.recognize_google(audio)
+# print(search_query)
+# output: search restaurants nearby
+
+import webbrowser
+webbrowser.open('https://www.google.com/maps/search/'+search_query.replace(' ','+'))
